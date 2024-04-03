@@ -5,8 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 
 string modelPath = "Model.zip";
-var connectionString = $"Server=;Database=BikeRental;User Id=sa;Password=pass;";
-
+var connectionString = $"Server=DESKTOP-NJVIU9V\\SQLEXPRESS;Database=BikeRental;User Id=sa;Password=pass;";
 
 MLContext mlContext = new MLContext();
 
@@ -22,13 +21,13 @@ IDataView firstYearData = mlContext.Data.FilterRowsByColumn(dataView, "Year", up
 IDataView secondYearData = mlContext.Data.FilterRowsByColumn(dataView, "Year", lowerBound: 1);
 
 var forecastingPipeline = mlContext.Forecasting.ForecastBySsa(
-    outputColumnName: "ForecastedRentals",
     inputColumnName: "TotalRentals",
     windowSize: 7,
     seriesLength: 30,
     trainSize: 365,
     horizon: 7,
     confidenceLevel: 0.95f,
+    outputColumnName: "ForecastedRentals",
     confidenceLowerBoundColumn: "LowerBoundRentals",
     confidenceUpperBoundColumn: "UpperBoundRentals");
 
@@ -37,6 +36,9 @@ SsaForecastingTransformer forecaster = forecastingPipeline.Fit(firstYearData);
 Evaluate(secondYearData, forecaster, mlContext);
 
 var forecastEngine = forecaster.CreateTimeSeriesEngine<ModelInput, ModelOutput>(mlContext);
+
+var a = forecastEngine.Predict();
+
 forecastEngine.CheckPoint(mlContext, modelPath);
 
 Forecast(secondYearData, 7, forecastEngine, mlContext);
@@ -72,7 +74,6 @@ void Evaluate(IDataView testData, ITransformer model, MLContext mlContext)
 
 void Forecast(IDataView testData, int horizon, TimeSeriesPredictionEngine<ModelInput, ModelOutput> forecaster, MLContext mlContext)
 {
-
     ModelOutput forecast = forecaster.Predict();
 
     IEnumerable<string> forecastOutput =
@@ -85,7 +86,9 @@ void Forecast(IDataView testData, int horizon, TimeSeriesPredictionEngine<ModelI
                 float lowerEstimate = Math.Max(0, forecast.LowerBoundRentals[index]);
                 float estimate = forecast.ForecastedRentals[index];
                 float upperEstimate = forecast.UpperBoundRentals[index];
+
                 return $"Date: {rentalDate}\n" +
+
                 $"Actual Rentals: {actualRentals}\n" +
                 $"Lower Estimate: {lowerEstimate}\n" +
                 $"Forecast: {estimate}\n" +
