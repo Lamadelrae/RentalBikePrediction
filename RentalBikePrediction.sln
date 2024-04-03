@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentalBikePrediction", "RentalBikePrediction\RentalBikePrediction.csproj", "{38063C5F-D5C5-45EE-8755-B23AC85D510D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentalBikePrediction", "RentalBikePrediction\RentalBikePrediction.csproj", "{38063C5F-D5C5-45EE-8755-B23AC85D510D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentalBikePrediction.Console", "RentalBikePrediction.Console\RentalBikePrediction.Console.csproj", "{7865600F-7606-412B-B8FE-A522F95830C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{38063C5F-D5C5-45EE-8755-B23AC85D510D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38063C5F-D5C5-45EE-8755-B23AC85D510D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38063C5F-D5C5-45EE-8755-B23AC85D510D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7865600F-7606-412B-B8FE-A522F95830C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7865600F-7606-412B-B8FE-A522F95830C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7865600F-7606-412B-B8FE-A522F95830C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7865600F-7606-412B-B8FE-A522F95830C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
